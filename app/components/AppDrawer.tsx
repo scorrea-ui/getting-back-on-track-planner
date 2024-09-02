@@ -29,7 +29,7 @@ export default function AppDrawer({
 
   return (
     <>
-      <div>
+      <div className="absolute">
         <Button
           color="dark"
           onClick={() => {
