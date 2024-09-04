@@ -10,6 +10,7 @@ import {
 } from "@remix-run/react";
 import { ThemeModeScript } from "flowbite-react";
 import { SpeedInsights } from "@vercel/speed-insights/remix";
+import { Analytics } from "@vercel/analytics/react";
 import type { LinksFunction, MetaFunction } from "@remix-run/node";
 import stylesheet from "~/tailwind.css?url";
 import { loader } from "~/loaders/auth.server";
@@ -49,6 +50,7 @@ export default function App(): JSX.Element {
       </head>
       <body>
         <AppDrawer user={user} />
+        <Analytics />
         <SpeedInsights />
         <Outlet />
         <ScrollRestoration />
