@@ -15,9 +15,7 @@ export default function Signup(): JSX.Element {
           backgroundImage:
             "url('https://tpkovjgiyfcsrekkckcg.supabase.co/storage/v1/object/public/public_images/signup.jpg?t=2024-09-02T18%3A42%3A46.428Z')",
         }}
-      >
-        {/* Background image */}
-      </div>
+      ></div>
       <div className="flex items-center justify-center w-full md:w-1/2 p-8 bg-gray-100">
         <div className="w-full max-w-md p-8 space-y-6 bg-white rounded shadow-md">
           <h2 className="text-2xl font-bold text-center text-gray-900">

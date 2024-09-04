@@ -21,6 +21,7 @@ const RecipeForm: React.FC<RecipeFormProps> = ({
   const [ingredientSections, setIngredientSections] = useState<
     IngredientSections[]
   >(recipe?.ingredient_sections ?? []);
+  const [fileError, setFileError] = useState("");
   const [steps, setSteps] = useState(recipe?.steps ?? []);
 
   const handleDescriptionChange = (value: string): void => {
@@ -89,6 +90,17 @@ const RecipeForm: React.FC<RecipeFormProps> = ({
   const removeStep = (index: number): void => {
     const newSteps = steps.filter((_, i) => i !== index);
     setSteps(newSteps);
+  };
+
+  const handleFileChange: React.ChangeEventHandler<HTMLInputElement> = (
+    event,
+  ) => {
+    const file = event.target.files?.[0];
+    if (file != null && file.size > 1.4 * 1024 * 1024) {
+      setFileError("File size exceeds 1.4MB");
+    } else {
+      setFileError("");
+    }
   };
 
   return (
@@ -332,9 +344,10 @@ const RecipeForm: React.FC<RecipeFormProps> = ({
           <FileInput
             required={recipe === undefined}
             name="image"
-            accept="image/*"
+            accept="image/png, image/jpg"
             className="w-full"
             helperText="SVG, PNG, JPG or GIF (MAX. 800x400px)."
+            onChange={handleFileChange}
           />
         </div>
         <div className="mb-4 flex items-center">
@@ -347,7 +360,12 @@ const RecipeForm: React.FC<RecipeFormProps> = ({
             Make this recipe public
           </Label>
         </div>
-        <Button type="submit" outline gradientDuoTone="greenToBlue">
+        <Button
+          disabled={Boolean(fileError)}
+          type="submit"
+          outline
+          gradientDuoTone="greenToBlue"
+        >
           {buttonText}
         </Button>
       </fetcher.Form>

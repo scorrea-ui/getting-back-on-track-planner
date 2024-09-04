@@ -49,7 +49,7 @@ export const loader: LoaderFunction = async ({ request, params, context }) => {
     const { data: recipes, error } = await supabase
       .from("recipes")
       .select("*")
-      .or(`user_id.eq.${userId}, is_public.eq.true`);
+      .or(`user_id.eq.${userId},is_public.eq.on`);
 
     if (error != null) {
       throw new Error(error.message);
